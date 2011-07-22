@@ -33,6 +33,29 @@ This allows to process the options you pass for the context
       base.send(:include, SomeModule) if options[:js]
     end
 
+## Example
+
+    feature ‘Creating a post’, %{
+      As a user
+      I want to create a post
+      In order to show it to people
+    } do
+
+      scenario 'Everything goes fine after a submit' do
+        # test code
+      end
+
+      context 'Something goes wrong', :js => true do
+        scenario 'my keyboard stopped working' do
+          # test code
+        end
+
+        scenario 'I forgot to fill up the form' do
+          # test code
+        end
+      end
+    end
+
 ## Acknowledgements
 
 We'd like to thank our employer XING AG for letting us work on this project as part of our innovation time and releasing it as open source.
