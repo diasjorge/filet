@@ -42,7 +42,7 @@ end
 ## Example
 
 ```ruby
-feature ‘Creating a post’, %{
+feature 'Creating a post', %{
   As a user
   I want to create a post
   In order to show it to people
