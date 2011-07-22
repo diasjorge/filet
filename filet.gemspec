@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "filet"
   s.version     = Filet::VERSION
   s.authors     = ["Jorge Dias", "Jakub Godawa"]
-  s.email       = ["jorge.dias@xing.com", "jakub.godawa@xing.com"]
+  s.email       = ["jorge@mrdias.com", "jakub.godawa@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{Acceptance Testing framework for Test::Unit}
   s.description = %q{Extension for Test::Unit to have a Steak-like DSL for acceptance testing}
