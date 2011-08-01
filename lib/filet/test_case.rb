@@ -49,12 +49,14 @@ module Filet
   end
 
   def create_class(name, superclass, &block)
-    klass = Class.new(superclass, &block)
+    klass = Class.new(superclass)
     name = name.gsub(/(^\d*|\W)/, ' ').lstrip
     klass_name = name.gsub(/(^[a-z]|\s+\w)/).each do |match|
       match.lstrip.upcase
     end
 
-    superclass.const_set klass_name, klass
+    const = superclass.const_set klass_name, klass
+    const.class_eval(&block) if block
+    const
   end
 end
