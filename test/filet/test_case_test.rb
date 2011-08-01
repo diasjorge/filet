@@ -103,8 +103,8 @@ module Filet
         end
       end
 
-      assert klass.instance_methods.include?("test_Scenario_description")
-      assert context_klass.instance_methods.include?("test_Nested_Scenario")
+      assert klass.method_defined?("test_Scenario_description")
+      assert context_klass.method_defined?("test_Nested_Scenario")
     end
 
     def teardown
