@@ -1,5 +1,5 @@
 require 'test/unit'
-require 'filet/test_case'
+require 'filet'
 
 include Filet
 
@@ -23,7 +23,7 @@ module Filet
     end
 
     def test_provides_a_hook_to_process_feature_options
-      Filet::TestCase.feature_hook do |base, options|
+      Filet.feature_hook do |base, options|
         base.instance_variable_set("@feature_hook_on", true)
       end
 
@@ -31,11 +31,11 @@ module Filet
 
       assert klass.instance_variable_get("@feature_hook_on"), "hook is not used"
 
-      Filet::TestCase.feature_hook = nil
+      Filet.feature_hook = nil
     end
 
     def test_provides_a_hook_to_process_context_options
-      Filet::TestCase.context_hook do |base, options|
+      Filet.context_hook do |base, options|
         if options[:js]
           base.instance_variable_set("@js_option", true)
         end
@@ -49,7 +49,7 @@ module Filet
 
       assert klass.instance_variable_get("@js_option"), "hook is not used"
 
-      Filet::TestCase.context_hook = nil
+      Filet.context_hook = nil
     end
 
     def test_class_nesting

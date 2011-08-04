@@ -1,10 +1,10 @@
-module Filet
-  def rails?
-    defined?(ActionController)
-  end
+require "filet/version"
+require "filet/hooks"
+require "filet/integration"
 
-  extend self
+module Filet
+  def self.included(base)
+    require "filet/test_case"
+  end
 end
 
-require "filet/version"
-require "filet/test_case"

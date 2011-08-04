@@ -1,15 +1,9 @@
-require 'test/unit'
 require 'filet'
 require 'filet/backport'
-require 'filet/hooks'
 
 module Filet
-  base_klass = Filet.rails? ? ActionController::IntegrationTest : Test::Unit::TestCase
-
-  class TestCase < base_klass
-
-    extend Filet::Hooks
-    extend Filet::Backport::Declarative unless Filet.rails?
+  class TestCase < Filet.base_klass
+    extend Filet::Backport::Declarative unless respond_to?(:test)
 
     class << self
       attr_accessor :description
@@ -19,7 +13,7 @@ module Filet
       def context(name, options = {}, &block)
         klass = create_class(name, self, &block)
 
-        context_hook.call(klass, options) if context_hook
+        Filet.context_hook.call(klass, options) if Filet.context_hook
 
         klass
       end
@@ -37,16 +31,17 @@ module Filet
     # Placeholder so test/unit ignores test cases without any tests.
     def default_test
     end
-
   end
 
   def feature(name, description, options = {}, &block)
     klass = create_class(name, Filet::TestCase, &block)
     klass.description = description
 
-    Filet::TestCase.feature_hook.call(klass, options) if Filet::TestCase.feature_hook
+    Filet.feature_hook.call(klass, options) if Filet.feature_hook
     klass
   end
+
+  private
 
   def create_class(name, superclass, &block)
     klass = Class.new(superclass)
