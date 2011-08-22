@@ -25,34 +25,35 @@ include Filet
 
 We provide several hooks for options processing.
 
-1. Filet.feature_hook
+1.  Filet.feature_hook
 
-This allows to process the options you pass for the feature
+    This allows to process the options you pass for the feature
 
-```ruby
-Filet.feature_hook do |base, options|
-  base.send(:include, Capybara)
-end
-```
+    ```ruby
+    Filet.feature_hook do |base, options|
+      base.send(:include, Capybara)
+    end
+    ```
 
-2. Filet.context_hook
+2.  Filet.context_hook
 
-This allows to process the options you pass for the context
+    This allows to process the options you pass for the context
 
-```ruby
-Filet.context_hook do |base, options|
-  base.send(:include, SomeModule) if options[:js]
-end
-```
-3. Filet.base_klass
+    ```ruby
+    Filet.context_hook do |base, options|
+      base.send(:include, SomeModule) if options[:js]
+    end
+    ```
+    
+3.  Filet.base_klass
 
-This allows you to define the base_klass of your tests. It tries to make a guess based on your environment and integrates with Rails 3 and Rails 2. The default is Test::Unit::TestCase.
+    This allows you to define the base_klass of your tests. It tries to make a guess based on your environment and integrates with Rails 3 and Rails 2. The default is Test::Unit::TestCase.
 
-```ruby
-Filet.base_klass = ActiveSupport::TestCase
-```
+    ```ruby
+    Filet.base_klass = ActiveSupport::TestCase
+    ```
 
-*NOTE*: This hook must be initialized before you include the Filet module
+    *NOTE*: This hook must be initialized before you include the Filet module
 
 ## Example
 
