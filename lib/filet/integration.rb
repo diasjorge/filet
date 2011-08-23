@@ -6,9 +6,12 @@ module Filet
         if defined?(ActionDispatch)
           require 'action_dispatch/testing/integration'
           ActionDispatch::IntegrationTest
-          # rails 2
+        # rails 2
         elsif defined?(ActionController)
           ActionController::IntegrationTest
+        elsif defined?(ActiveSupport)
+          require 'active_support/test_case'
+          ActiveSupport::TestCase
         else
           Test::Unit::TestCase
         end

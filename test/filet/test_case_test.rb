@@ -1,7 +1,4 @@
-require 'test/unit'
-require 'filet'
-
-include Filet
+require 'test_helper'
 
 module Filet
   class TestCaseTest < Test::Unit::TestCase
@@ -52,21 +49,19 @@ module Filet
       Filet.context_hook = nil
     end
 
-    def test_class_nesting
-      context_klass = context_klass =
-        context_klass2 = context_klass2 = nil
+    def test_class_nesting_names
+      context_klass = context_klass2 = nil
 
       feature("feature name", "description") do
-        context_klass = context("some context") do
+        context("some context") do
           context_klass = context("the criteria")
         end
 
-        context_klass2 = context("other context") do
+        context("other context") do
           context_klass2 = context("the criteria")
         end
       end
 
-      assert_not_equal context_klass.name, context_klass2.name
       assert_not_equal context_klass.name, context_klass2.name
     end
 

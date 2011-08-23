@@ -18,12 +18,17 @@ module Filet
         klass
       end
 
-      def background(&block)
-        define_method(:setup, &block)
-      end
+      # We don't want to redefine ActiveSupport::TestCase methods
+      if respond_to?(:setup) && respond_to?(:teardown)
+        alias :background :setup
+      else
+        def background(&block)
+          define_method(:setup, &block)
+        end
 
-      def teardown(&block)
-        define_method(:teardown, &block)
+        def teardown(&block)
+          define_method(:teardown, &block)
+        end
       end
 
     end

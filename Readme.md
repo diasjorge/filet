@@ -21,6 +21,44 @@ require 'filet'
 include Filet
 ```
 
+## Example
+
+```ruby
+feature 'Creating a post', %{
+  As a user
+  I want to create a post
+  In order to show it to people
+} do
+
+  background do
+    # setup data
+  end
+
+  scenario 'Everything goes fine after a submit' do
+    # test code
+  end
+
+  context 'Something goes wrong', :js => true do
+
+    background do
+      # setup more data
+    end
+
+    scenario 'my keyboard stopped working' do
+      # test code
+    end
+
+    scenario 'I forgot to fill up the form' do
+      # test code
+    end
+
+    teardown do
+      # clean up
+    end
+  end
+end
+```
+
 ## Hooks
 
 We provide several hooks for options processing.
@@ -44,7 +82,7 @@ We provide several hooks for options processing.
       base.send(:include, SomeModule) if options[:js]
     end
     ```
-    
+
 3.  Filet.base_klass
 
     This allows you to define the base_klass of your tests. It tries to make a guess based on your environment and integrates with Rails 3 and Rails 2. The default is Test::Unit::TestCase.
@@ -55,31 +93,6 @@ We provide several hooks for options processing.
 
     *NOTE*: This hook must be initialized before you include the Filet module
 
-## Example
-
-```ruby
-feature 'Creating a post', %{
-  As a user
-  I want to create a post
-  In order to show it to people
-} do
-
-  scenario 'Everything goes fine after a submit' do
-    # test code
-  end
-
-  context 'Something goes wrong', :js => true do
-    scenario 'my keyboard stopped working' do
-      # test code
-    end
-
-    scenario 'I forgot to fill up the form' do
-      # test code
-    end
-  end
-end
-```
-
 ## Compatibility
 
 Filet supports and is tested against ruby 1.8.7, 1.9.2, jruby-1.6.2 and rubinius-1.2.4
@@ -89,6 +102,10 @@ Filet supports and is tested against ruby 1.8.7, 1.9.2, jruby-1.6.2 and rubinius
 ### Rails Integration
 
 It tries to make a guess based on your environment and integrates with Rails 3 and Rails 2. We recommend that you place your tests inside the test/integration folder.
+
+## Gotchas
+
+If you're not using ActiveSupport then the setup and teardown methods muts call super for the nesting to work.
 
 ## Acknowledgements
 
