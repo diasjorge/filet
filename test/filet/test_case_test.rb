@@ -76,6 +76,25 @@ module Filet
       assert klass.instance_variable_get('@setup_created')
     end
 
+    def test_nested_backgrounds
+      feature("feature name", "description") do
+        background do
+          instance_variable_set("@feature_background", true)
+        end
+        context "nested" do
+          background do
+            instance_variable_set("@nested_background", true)
+          end
+        end
+      end
+
+      test = Filet::TestCase::FeatureName::Nested.new('default_test')
+      test.setup
+
+      assert test.instance_variable_get("@feature_background")
+      assert test.instance_variable_get("@nested_background")
+    end
+
     def test_teardown_method
       klass = feature("feature name", "description") do
         teardown do

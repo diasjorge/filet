@@ -103,10 +103,6 @@ Filet supports and is tested against ruby 1.8.7, 1.9.2, jruby-1.6.2 and rubinius
 
 It tries to make a guess based on your environment and integrates with Rails 3 and Rails 2. We recommend that you place your tests inside the test/integration folder.
 
-## Gotchas
-
-If you're not using ActiveSupport then the setup and teardown methods muts call super for the nesting to work.
-
 ## Acknowledgements
 
 We'd like to thank our employer XING AG for letting us work on this project as part of our innovation time and releasing it as open source.

@@ -13,6 +13,7 @@ module Filet
           require 'active_support/test_case'
           ActiveSupport::TestCase
         else
+          require 'test/unit/testcase'
           Test::Unit::TestCase
         end
     end
