@@ -20,7 +20,7 @@ module Filet
 
       def background(&block)
         define_method(:setup) do
-          super
+          super()
           instance_eval(&block)
         end
       end
@@ -28,7 +28,7 @@ module Filet
       def teardown(&block)
         define_method(:teardown) do
           instance_eval(&block)
-          super
+          super()
         end
       end
 
