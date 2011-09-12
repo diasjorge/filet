@@ -69,7 +69,7 @@ We provide several hooks for options processing.
 
     ```ruby
     Filet.feature_hook do |base, options|
-      base.send(:include, Capybara)
+      base.send(:include, Capybara::DSL)
     end
     ```
 
