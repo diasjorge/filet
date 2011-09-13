@@ -39,7 +39,7 @@ module Filet
     end
   end
 
-  def feature(name, description, options = {}, &block)
+  def feature(name, description=nil, options = {}, &block)
     klass = create_class(name, Filet::TestCase, &block)
     klass.description = description
 

@@ -9,6 +9,12 @@ module Filet
       assert_equal "feature description lorem ipsum", klass.description
     end
 
+    def test_feature_without_a_description
+      klass = feature("feature name")
+      assert_equal  Filet::TestCase, klass.superclass
+      assert_nil    klass.description
+    end
+
     def test_context_returns_feature_subclass
       klass = nil
       feature("feature name", "description") do
